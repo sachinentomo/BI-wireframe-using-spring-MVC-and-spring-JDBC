@@ -27,8 +27,10 @@ import org.springframework.web.servlet.ModelAndView;
 import ems.dao.DepartmentDao;
 import ems.dao.EmployeeDao;
 import ems.dao.ProjectDao;
+import ems.dao.ReportDao;
 import ems.dao.ResultDao;
 import ems.model.Department;
+import ems.model.TotalCount;
 import ems.model.Employee;
 import ems.model.Project;
 import ems.model.EmployeeByDepartment;
@@ -46,6 +48,9 @@ public class HomeController {
      
      @Autowired
      ResultDao resultDao;
+     
+     @Autowired
+     ReportDao reportDao;
 
 	@RequestMapping("/index")
 	public ModelAndView index()
@@ -60,6 +65,18 @@ public class HomeController {
 		return modelAndView;
 	}
 	
+	@RequestMapping("/report")
+	public ModelAndView report() throws JsonProcessingException  {
+		ModelAndView modelAndView = new ModelAndView("report");
+		String totalCount = reportDao.getTotalCount();
+		String empByDept = resultDao.getEmployeeByDepartment(); ;
+		String empByPrj = resultDao.getEmployeeByProject();
+		modelAndView.addObject("totalCount",totalCount);
+		modelAndView.addObject("empByDept", empByDept);
+		modelAndView.addObject("empByPrj", empByPrj);
+		return modelAndView;
+		
+	}
 	
 	@RequestMapping("/result")
 	public ModelAndView result() throws JsonProcessingException
@@ -81,21 +98,10 @@ public class HomeController {
 		
 	}
 	
-	  /*@RequestMapping(path = "/addemployee", method = RequestMethod.POST)
-	  @ResponseBody public List<String> addemployee(@RequestParam(name="emp_name") String emp_name,
-			  @RequestParam(name="emp_email") String emp_email,
-			  @RequestParam(name="emp_pass") String emp_pass,
-			  @RequestParam(name="emp_dept") String emp_dept,
-			  @RequestParam(name="emp_prj") String emp_prj,
-			  @RequestParam(name="emp_join") String emp_join){ 
-		  List<String> l = new ArrayList<String>(); 
-		  l.add("testing"); return l; 
-	  }*/
-	 
 	
 		
-		@RequestMapping(path = "/addemployee", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded") 
-		public @ResponseBody String addemployee(HttpServletRequest request) {
+	@RequestMapping(path = "/addemployee", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded") 
+	public @ResponseBody String addemployee(HttpServletRequest request) {
 		
 			String emp_email = request.getParameter("emp_email");
 			String emp_pass = request.getParameter("emp_password");
@@ -130,8 +136,8 @@ public class HomeController {
 		       
 		}
 		
-		@RequestMapping(path = "/editemployee", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded") 
-		public @ResponseBody String editemployee(HttpServletRequest request) throws Exception {
+	@RequestMapping(path = "/editemployee", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded") 
+	public @ResponseBody String editemployee(HttpServletRequest request) throws Exception {
 			int emp_id = Integer.parseInt(request.getParameter("emp_id"));
 			//String emp_code = request.getParameter("emp_code");
 			String emp_name = request.getParameter("emp_name");

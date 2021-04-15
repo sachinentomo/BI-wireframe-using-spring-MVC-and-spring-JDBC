@@ -16,6 +16,7 @@ public class DepartmentRowMapper implements RowMapper<Department>{
 		department.setDept_name(rs.getString(3));
 		department.setDept_desc(rs.getString(4));
 		department.setDept_loc(rs.getString(5));
+		//department.setDept_count(rs.getInt("dept_count"));
 		return department;
 		
 	}

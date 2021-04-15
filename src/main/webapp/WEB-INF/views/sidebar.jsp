@@ -18,7 +18,7 @@
             <a class="nav-link" href="search.jsp">Search</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="report.jsp">Report</a>
+            <a class="nav-link" href="report">Report</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="result">Result</a>

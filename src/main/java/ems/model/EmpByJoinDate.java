@@ -1,6 +1,4 @@
 package ems.model;
-
-import java.util.*;
 public class EmpByJoinDate {
 	int count;
 	String ejoin;

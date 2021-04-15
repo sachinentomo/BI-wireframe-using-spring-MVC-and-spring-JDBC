@@ -128,13 +128,13 @@
         var data = new google.visualization.DataTable();
         data.addColumn('date', 'X');
         data.addColumn('number', 'Dogs');
-        var dataArray = [];
+        /*var dataArray = [];
  		$.each(empByJoinDate, function(i, obj) {
  			dataArray.push([obj.ejoin, obj.count]);
  		});
 
- 		data.addRows(dataArray);
-        /*data.addRows([
+ 		data.addRows(dataArray);*/
+        data.addRows([
           [0, 0],   [1, 10],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
           [6, 11],  [7, 27],  [8, 33],  [9, 40],  [10, 32], [11, 35],
           [12, 30], [13, 40], [14, 42], [15, 47], [16, 44], [17, 48],
@@ -147,7 +147,7 @@
           [54, 71], [55, 72], [56, 73], [57, 75], [58, 70], [59, 68],
           [60, 64], [61, 60], [62, 65], [63, 67], [64, 68], [65, 69],
           [66, 70], [67, 72], [68, 75], [69, 80]
-        ]);*/
+        ]);
 
         var options = {
           hAxis: {

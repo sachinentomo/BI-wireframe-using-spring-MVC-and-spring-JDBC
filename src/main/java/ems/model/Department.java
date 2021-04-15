@@ -7,7 +7,7 @@ public class Department {
 	protected String dept_name;
 	protected String dept_desc;
 	protected String dept_loc;
-	
+	protected int dept_count;
 	public Department() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -68,6 +68,16 @@ public class Department {
 	public void setDept_loc(String dept_loc) {
 		this.dept_loc = dept_loc;
 	}
+
+	public int getDept_count() {
+		return dept_count;
+	}
+
+	public void setDept_count(int dept_count) {
+		this.dept_count = dept_count;
+	}
+	
+	
 	
 	
 	

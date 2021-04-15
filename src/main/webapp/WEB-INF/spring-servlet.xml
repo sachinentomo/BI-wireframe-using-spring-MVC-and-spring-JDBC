@@ -48,6 +48,10 @@
     		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
     	</bean>
     	
+    	<bean class="ems.dao.ReportDao" name="reportDao" >
+    		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    	</bean>
+    	
     	<mvc:resources mapping="/resources/**" location="/resources/"  
     		cache-period="31556926"/>
 
