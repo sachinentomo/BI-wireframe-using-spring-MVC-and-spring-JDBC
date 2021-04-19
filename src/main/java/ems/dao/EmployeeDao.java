@@ -37,7 +37,7 @@ public class EmployeeDao {
 	 * }
 	 */   
 	public List<Employee> getEmployees(){
-		String query = "select * from employee";
+		String query = "select * from employee where is_delete='0'";
 		List<Employee> employeeList = jdbcTemplate.query(query, new EmployeeRowMapper());
 		return employeeList;
 	}
@@ -48,8 +48,7 @@ public class EmployeeDao {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
 	    jdbcTemplate.update(connection -> {
-	        PreparedStatement ps = connection
-	          .prepareStatement(INSERT_MESSAGE_SQL,Statement.RETURN_GENERATED_KEYS);
+	        PreparedStatement ps = connection.prepareStatement(INSERT_MESSAGE_SQL,Statement.RETURN_GENERATED_KEYS);
 	          ps.setString(1, employee.getEmp_name());
 	          ps.setString(2, employee.getEmp_email());
 	          ps.setString(3, employee.getEmp_pass());
@@ -76,9 +75,16 @@ public class EmployeeDao {
 	}
 	public Employee getEmployee(int id)
 	{
-		String insert_fetch = "select * from employee where emp_id=?";
+		String insert_fetch = "select * from employee where emp_id=? AND is_delete='0'";
         Employee employee =  jdbcTemplate.queryForObject(insert_fetch,new EmployeeRowMapper(),id);
         return employee;
+	}
+	public boolean deleteEmployee(int id) {
+		String query = "update employee set is_delete='1' where emp_id='"+id+"'";
+		int i = jdbcTemplate.update(query);
+		boolean result = i>=1;
+		return result;
+		
 	}
 }
 

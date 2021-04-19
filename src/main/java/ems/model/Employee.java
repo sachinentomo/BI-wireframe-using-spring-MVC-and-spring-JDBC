@@ -11,6 +11,8 @@ public class Employee {
 	protected int emp_dept;
 	protected int emp_prj;
 	protected Date emp_join;
+	protected boolean is_delete;
+	
 	
 	public Employee() {
 		super();
@@ -94,6 +96,12 @@ public class Employee {
 	}
 	public void setEmp_join(Date emp_join) {
 		this.emp_join = emp_join;
+	}
+	public boolean isIs_delete() {
+		return is_delete;
+	}
+	public void setIs_delete(boolean is_delete) {
+		this.is_delete = is_delete;
 	}
 	
 	

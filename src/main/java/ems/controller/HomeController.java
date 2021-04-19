@@ -151,40 +151,190 @@ public class HomeController {
 			
 
 	        ObjectMapper objectMapper = new ObjectMapper();
-
 	        try {
-	        	String json = objectMapper.writeValueAsString(emp_prj);
-	           return json;
-	        } catch (JsonProcessingException e) {
-	            e.printStackTrace();
+				String json = objectMapper.writeValueAsString(emp_prj);
+				return json;
+	        } 
+	        catch (JsonProcessingException e) {
+	        	e.printStackTrace();
 	        }
-			
 			return null;
-	       
-
 		}
-			 
-	 
+	@RequestMapping(path = "/deleteemployee", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded") 
+	public @ResponseBody String  deleteemployee(HttpServletRequest request) throws Exception {
+		int emp_id = Integer.parseInt(request.getParameter("emp_id"));
+		boolean result = employeeDao.deleteEmployee(emp_id);
+		 ObjectMapper objectMapper = new ObjectMapper();
+	        try {
+				String json = objectMapper.writeValueAsString(result);
+				return json;
+	        } 
+	        catch (JsonProcessingException e) {
+	        	e.printStackTrace();
+	        }
+			return null;
+		
+
+	}
+	@RequestMapping("/department")
+	public ModelAndView departmentindex()
+	{
+		ModelAndView modelAndView = new ModelAndView("department");
+		//List<Employee> empList= employeeDao.getEmployees(); 
+		List<Department> deptList= departmentDao.getDepartments();
+		//List<Project> prjList= projectDao.getProjects();
+		//modelAndView.addObject("empList", empList);
+		modelAndView.addObject("deptList", deptList);
+		//modelAndView.addObject("prjList", prjList);
+		return modelAndView;
+	}
 	
-	/*
-	 * @RequestMapping(path = "/addemployee" , method = RequestMethod.POST) public
-	 * ModelAndView details(@RequestBody Employee employee, HttpServletRequest
-	 * request, HttpServletResponse response) {
-	 * 
-	 * ModelAndView view = new ModelAndView(); String username =
-	 * employee.getEmp_name(); view.addObject("username", username);
-	 * view.setViewName("index");
-	 * 
-	 * return view; }
-	 */
+	@RequestMapping(path = "/adddepartment", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded") 
+	public @ResponseBody String adddepartment(HttpServletRequest request) {
+		
+			String dept_name = request.getParameter("dept_name");
+			String dept_desc = request.getParameter("dept_desc");
+			String dept_loc = request.getParameter("dept_loc");
+			
+			
+			Department dept = new Department(dept_name, dept_desc, dept_loc);
+			Department dept1 = departmentDao.insertDepartment(dept);
+		   
+
+		        ObjectMapper objectMapper = new ObjectMapper();
+
+		        try {
+		        	String json = objectMapper.writeValueAsString(dept1);
+		           return json;
+		        } catch (JsonProcessingException e) {
+		            e.printStackTrace();
+		        }
+				
+				return null;
+		       
+		       
+		}
+		
+	@RequestMapping(path = "/editdepartment", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded") 
+	public @ResponseBody String editdepartment(HttpServletRequest request) throws Exception {
+			int dept_id = Integer.parseInt(request.getParameter("dept_id"));
+			//String dept_code = request.getParameter("dept_code");
+			String dept_name = request.getParameter("dept_name");
+			String dept_desc = request.getParameter("dept_desc");
+			String dept_loc = request.getParameter("dept_loc");
+			//Date emp_join=new SimpleDateFormat("yyyy-MM-dd HH:MM:ss").parse(request.getParameter("emp_join")); 
+			Department dept = new Department(dept_id, dept_name, dept_desc, dept_loc);
+			departmentDao.updateDepartment(dept);
+			
+
+	        ObjectMapper objectMapper = new ObjectMapper();
+	        try {
+				String json = objectMapper.writeValueAsString("sucess");
+				return json;
+	        } 
+	        catch (JsonProcessingException e) {
+	        	e.printStackTrace();
+	        }
+			return null;
+		}
+	@RequestMapping(path = "/deletedepartment", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded") 
+	public @ResponseBody String  deletedepartment(HttpServletRequest request) throws Exception {
+		int dept_id = Integer.parseInt(request.getParameter("dept_id"));
+		boolean result = departmentDao.deleteDepartment(dept_id);
+		 ObjectMapper objectMapper = new ObjectMapper();
+	        try {
+				String json = objectMapper.writeValueAsString(result);
+				return json;
+	        } 
+	        catch (JsonProcessingException e) {
+	        	e.printStackTrace();
+	        }
+			return null;
+		
+
+	}
+	
+	@RequestMapping("/project")
+	public ModelAndView projectindex()
+	{
+		ModelAndView modelAndView = new ModelAndView("project");
+		//List<Employee> empList= employeeDao.getEmployees(); 
+		List<Project> prjList= projectDao.getProjects();
+		//List<Project> prjList= projectDao.getProjects();
+		//modelAndView.addObject("empList", empList);
+		modelAndView.addObject("prjList", prjList);
+		//modelAndView.addObject("prjList", prjList);
+		return modelAndView;
+	}
+	
+	@RequestMapping(path = "/addproject", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded") 
+	public @ResponseBody String addproject(HttpServletRequest request) {
+		
+			String prj_name = request.getParameter("prj_name");
+			String prj_desc = request.getParameter("prj_desc");
+			//String dept_loc = request.getParameter("prj_loc");
+			
+			
+			Project prj = new Project(prj_name, prj_desc);
+			Project prj1 = projectDao.insertProject(prj);
+		   
+
+		        ObjectMapper objectMapper = new ObjectMapper();
+
+		        try {
+		        	String json = objectMapper.writeValueAsString(prj1);
+		           return json;
+		        } catch (JsonProcessingException e) {
+		            e.printStackTrace();
+		        }
+				
+				return null;
+		       
+		       
+		}
+		
+	@RequestMapping(path = "/editproject", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded") 
+	public @ResponseBody String editproject(HttpServletRequest request) throws Exception {
+			int prj_id = Integer.parseInt(request.getParameter("prj_id"));
+			//String dept_code = request.getParameter("dept_code");
+			String prj_name = request.getParameter("prj_name");
+			String prj_desc = request.getParameter("prj_desc");
+			//String dept_loc = request.getParameter("prj_loc");
+			//Date emp_join=new SimpleDateFormat("yyyy-MM-dd HH:MM:ss").parse(request.getParameter("emp_join")); 
+			Project prj = new Project(prj_id, prj_name, prj_desc);
+			projectDao.updateProject(prj);
+			
+
+	        ObjectMapper objectMapper = new ObjectMapper();
+	        try {
+				String json = objectMapper.writeValueAsString("sucess");
+				return json;
+	        } 
+	        catch (JsonProcessingException e) {
+	        	e.printStackTrace();
+	        }
+			return null;
+		}
+	@RequestMapping(path = "/deletedepartment", method = RequestMethod.POST, headers = "content-type=application/x-www-form-urlencoded") 
+	public @ResponseBody String  deletedepartment(HttpServletRequest request) throws Exception {
+		int dept_id = Integer.parseInt(request.getParameter("dept_id"));
+		boolean result = departmentDao.deleteDepartment(dept_id);
+		 ObjectMapper objectMapper = new ObjectMapper();
+	        try {
+				String json = objectMapper.writeValueAsString(result);
+				return json;
+	        } 
+	        catch (JsonProcessingException e) {
+	        	e.printStackTrace();
+	        }
+			return null;
+		
+
+	}
 	
 	
 }
-	 
-	/*
-	 * @RequestMapping(path = "/process", method = RequestMethod.POST ) public
-	 * String process(@ModelAttribute User user,Model model) { return "result"; }
-	 */
+
 	
 	
 

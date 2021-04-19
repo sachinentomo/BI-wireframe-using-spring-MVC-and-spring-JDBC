@@ -9,7 +9,7 @@
             <a class="nav-link active" href="index" id="employee">Employee</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="department.jsp" id="department">Department</a>
+            <a class="nav-link" href="department" id="department">Department</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="project.jsp" id="project">Project</a>

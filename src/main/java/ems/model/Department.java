@@ -20,6 +20,15 @@ public class Department {
 		this.dept_loc = dept_loc;
 	}
 	
+	public Department(int dept_id, String dept_name, String dept_desc, String dept_loc) {
+		super();
+		this.dept_id = dept_id;
+		this.dept_name = dept_name;
+		this.dept_desc = dept_desc;
+		this.dept_loc = dept_loc;
+	
+	}
+
 	public Department(int dept_id, String dept_code, String dept_name, String dept_desc, String dept_loc) {
 		super();
 		this.dept_id = dept_id;
@@ -28,6 +37,7 @@ public class Department {
 		this.dept_desc = dept_desc;
 		this.dept_loc = dept_loc;
 	}
+	
 
 	public int getDept_id() {
 		return dept_id;

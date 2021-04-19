@@ -55,7 +55,7 @@
 					                    <button role="button" class="btn btn-link edit-employee">
 					                        <i class="fas fa-pencil-alt text-warning"></i>
 					                    </button>
-					                    <button role="button" class="btn btn-link">
+					                    <button role="button" class="btn btn-link delete-employee">
 					                        <i class="fas fa-trash text-danger"></i>
 					                    </button>
 					                </td>   
@@ -138,30 +138,30 @@
           				
           				<div class="modal-body">
           					<div class='error-msg' id='validationSummary'></div>
-          					
+          					<div  id="confirm-msg"></div>
           					<div class="form-group" style="display:none">
               					<label>lastname</label>
               					<input type="text" class="form-control" name="last_name" id="employee-lastname" required>
             				</div>
             				
-            				<div class="form-group">
+            				<div class="form-group" id="div1">
               					<label>Name</label>
               					<input type="text" class="form-control" name="emp_name" id="employee-name" required>
             				</div>
             				
             				
             				
-            				<div class="form-group">
+            				<div class="form-group" id="div2">
               					<label>Email</label>
               					<input type="email" class="form-control" name="emp_email" id="employee-email" required>
             				</div>
 			
-							<div class="form-group">
+							<div class="form-group" id="div3">
               					<label>Password</label>
               					<input type="password" class="form-control" name="emp_password"  id="employee-password" required>
             				</div>
 
-							<div class="form-group">
+							<div class="form-group" id="div4">
               					<label>Department</label>
               					<select class="custom-select" name="emp_dept" id="employee-department">
               						<option selected value="">Select Department</option>
@@ -171,7 +171,7 @@
 								</select>
             				</div>
             				
-            				<div class="form-group">
+            				<div class="form-group" id="div5">
               					<label>Project</label>
               					<select class="custom-select" name="emp_prj" id="employee-project" >
 									<option selected value="">Select Project</option>

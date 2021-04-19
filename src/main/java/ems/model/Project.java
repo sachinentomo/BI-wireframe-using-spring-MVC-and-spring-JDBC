@@ -17,6 +17,13 @@ public class Project {
 		this.prj_name = prj_name;
 		this.prj_desc = prj_desc;
 	}
+	
+	public Project(int prj_id, String prj_name, String prj_desc) {
+		super();
+		this.prj_id = prj_id;
+		this.prj_name = prj_name;
+		this.prj_desc = prj_desc;
+	}
 	public Project(String prj_name, String prj_desc) {
 		super();
 		this.prj_name = prj_name;
